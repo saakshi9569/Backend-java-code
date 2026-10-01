@@ -11,8 +11,8 @@ class PConstructor{
   }
   public static void main(String[] args){
      PConstructor d1=new PConstructor(10,20);
-     d1.show();
-     PConstructor d2=new PConstructor(10,20);
-     d2.show();
+     d1.show();//10 20
+     PConstructor d2=new PConstructor(20,20);
+     d2.show();//20 20
   }
 }
