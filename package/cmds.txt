@@ -1,0 +1,10 @@
+cmds
+->  javac -d . Temp1.java //for package in same directory
+->  javac -d . e\f2 Temp1.java //for package in same directory
+->  java p1.Temp1
+
+
+ubantu
+=> For package in different directory use case
+-> javac -d /home/sakshi/Documents/github/Backend-java-codes/package-check Temp1.java   
+->java p1.Temp1  //in the directory or folder u want to use
