@@ -12,5 +12,7 @@ class Temp{
   }
   public static void main(String[] args){
      new Temp();
+     //new Temp(10);
+     //new Temp(10,20);
   }
 }
