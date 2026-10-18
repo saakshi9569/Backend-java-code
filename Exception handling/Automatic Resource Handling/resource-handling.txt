@@ -1,0 +1,23 @@
+static String readFirstFromFile(String path) throws IOException{
+   try (BufferedREader br=new BufferedReader(new FileREader(path))){
+      int x=10/0;
+      return br.readLine();
+   }
+}
+
+In this example, the resource declared in the try-with-resources statement is a BufferedReader. THe declarartion statement appears within parentheses immediately after the try keyword. The class BufferedReader, in java SE 7 and later, implements the interface java.lang.AutoCloseable. Because the BufferedReader instance is declared in a try-with-resources statement, it will be closed regardless of whether thr try statement completes normally or abruptly.
+
+Using Multiple Resources
+
+You can use multiple resources inside a try-with-resources block and have all automatically closed. Here is an example:
+
+private static void printFileJava7() throws IOException{
+  
+   try(FileInputStream input=new FileInputStream("file.txt"); BufferedInputStream bufferedInput = new BufferedInputStream(input)){
+   
+   }
+   }
+}
+
+THis example creates two resources inside the parentheses after the try
+
