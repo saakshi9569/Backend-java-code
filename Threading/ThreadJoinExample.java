@@ -1,0 +1,81 @@
+public class ThreadJoinExample{
+    public static void main(String args[]){
+        Thread t1=new Thread(new MyRunnable(), "t1");
+        Thread t2=new Thread(new MyRunnable(), "t2");
+        Thread t3=new Thread(new MyRunnable(), "t3");
+        t1.start();
+        //start second thread after waiting for 2 seconds or if it is dead
+        try{
+           t1.join(2000);
+        }catch(InterruptedException e){
+           e.printStackTrace();
+        }
+        t2.start();
+        //start third thread after waiting for 2 seconds or if it is dead
+        try{
+           t1.join(2000);
+        }catch(InterruptedException e){
+           e.printStackTrace();
+        }
+        t3.start();
+        System.out.println(t1.isAlive());
+        //t1.start();
+        //let all threads finish execution before finishing main thread
+        try{
+            t1.join();
+            t2.join();
+            t3.join();
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        System.out.println("All threads are dead, existing main thread");
+    }
+}
+
+class MyRunnable implements Runnable{
+    public void run(){
+        for(int i=1;i<=5;i++){
+           System.out.println("Thread Started:::"+Thread.currentThread().getName());
+           try{
+              Thread.sleep(4000);
+           }catch(InterruptedException e){
+              e.printStackTrace();
+           }
+           System.out.println("Thread ended:::"+Thread.currentThread().getName());
+        }
+    }
+}
+/*
+Thread Started:::t1
+Thread Started:::t2
+true
+Thread Started:::t3
+Thread ended:::t1
+Thread Started:::t1
+Thread ended:::t2
+Thread Started:::t2
+Thread ended:::t3
+Thread Started:::t3
+Thread ended:::t1
+Thread Started:::t1
+Thread ended:::t2
+Thread Started:::t2
+Thread ended:::t3
+Thread Started:::t3
+Thread ended:::t1
+Thread Started:::t1
+Thread ended:::t2
+Thread Started:::t2
+Thread ended:::t3
+Thread Started:::t3
+Thread ended:::t1
+Thread Started:::t1
+Thread ended:::t2
+Thread Started:::t2
+Thread ended:::t3
+Thread Started:::t3
+Thread ended:::t1
+Thread ended:::t2
+Thread ended:::t3
+All threads are dead, existing main thread
+*/
